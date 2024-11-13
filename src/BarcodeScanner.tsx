@@ -28,7 +28,7 @@ const BarcodeScanner = (props:ScannerProps): React.ReactElement => {
         if (props.license) {
           BarcodeReader.license = props.license;
         }else{
-          BarcodeReader.license = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ=="; // public trial license
+          BarcodeReader.license = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAzNDAwODQzLVRYbFFjbTlxIiwibWFpblNlcnZlclVSTCI6Imh0dHBzOi8vbWRscy5keW5hbXNvZnRvbmxpbmUuY29tIiwib3JnYW5pemF0aW9uSUQiOiIxMDM0MDA4NDMiLCJzdGFuZGJ5U2VydmVyVVJMIjoiaHR0cHM6Ly9zZGxzLmR5bmFtc29mdG9ubGluZS5jb20iLCJjaGVja0NvZGUiOi00NDc0NjAxNX0="; // public trial license
         }
         if (props.engineResourcePath) {
           BarcodeReader.engineResourcePath = props.engineResourcePath;
@@ -81,6 +81,7 @@ const BarcodeScanner = (props:ScannerProps): React.ReactElement => {
   }
 
   const onOpened = (cam:HTMLVideoElement,camLbl:string) => {
+    console.log("firstOpened-------------------------------")
     camera.current = cam;
     setViewBox("0 0 "+cam.videoWidth+" "+cam.videoHeight);
     startScanning();
@@ -95,7 +96,7 @@ const BarcodeScanner = (props:ScannerProps): React.ReactElement => {
       props.onClosed();
     }
   }
-
+console.log("in roooote =======================================================")
   const onPolygonClicked = (result:TextResult) => {
     if (props.onClicked) {
       props.onClicked(result);
@@ -147,12 +148,14 @@ const BarcodeScanner = (props:ScannerProps): React.ReactElement => {
       )
     }
   }
+
+  console.log('==================props====================', props)
   
   return (
     <VisionCamera
       isActive={props.isActive}
       isPause={props.isPause}
-      facingMode={props.facingMode}
+      facingMode={'user'}
       desiredCamera={props.desiredCamera}
       desiredResolution={props.desiredResolution}
       onOpened={onOpened}

@@ -32,6 +32,7 @@ function App() {
   const onOpened = (cam:HTMLVideoElement,camLabel:string) => {
     console.log("opened");
     console.log(camLabel);
+    debugger
     setOpened(true);
     setCurrentResolution(cam.videoWidth+"x"+cam.videoHeight);
     setCurrentVideoWidth(cam.videoWidth);
@@ -121,7 +122,7 @@ function App() {
     }
     
   }
-
+console.log('isActive', isActive, opened, initialized)
   return (
     <div className="container">
       <div className="barcode-scanner">
